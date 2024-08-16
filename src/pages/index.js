@@ -205,7 +205,7 @@ export default function Home() {
 
   useEffect(() => {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxTu-FHeCfIGH3TdVsRM2yOAy7ODPbW-bOG0qFHU4V1uXzn9IoPUP4YGTueR_uvJ9r-mQ/exec";
+      "https://script.google.com/macros/s/AKfycbyksmuKXNgmwtcnoAmyv7sE1VrgWkTGnv6t4XHVAJUlrAevmrMV6oGT3MwaYPnpcZL_/exec";
 
     const form = document.forms["regist-form"];
 
@@ -284,8 +284,8 @@ export default function Home() {
                   </label>
                   <select
                     type="text"
-                    id="Kategori Kompetisi"
-                    name="Kategori Kompetisi"
+                    id="Kategori_Kompetisi"
+                    name="Kategori_Kompetisi"
                     className="form-control"
                     placeholder="Pilih Kompetisi"
                     required
@@ -301,8 +301,8 @@ export default function Home() {
                   </label>
                   <textarea
                     type="text"
-                    id="Nama Ketua Tim"
-                    name="Nama Ketua Tim"
+                    id="Nama_Ketua_Tim"
+                    name="Nama_Ketua_Tim"
                     className="form-control"
                     placeholder="Masukan Nama Ketua Tim"
                     required
@@ -317,8 +317,8 @@ export default function Home() {
                   </label>
                   <textarea
                     type="text"
-                    id="Nama Sekolah"
-                    name="Nama Sekolah"
+                    id="Nama_Sekolah"
+                    name="Nama_Sekolah"
                     className="form-control"
                     placeholder="Masukan Nama Sekolah/Universitas Anda"
                     required
@@ -376,8 +376,8 @@ export default function Home() {
                     </label>
                     <select
                       type="text"
-                      id="Jumlah Medali"
-                      name="Jumlah Medali"
+                      id="Jumlah_Medali"
+                      name="Jumlah_Medali"
                       className="form-control"
                       placeholder="Pilih Jumlah Medali yang ingin digandakan"
                       required
@@ -399,8 +399,8 @@ export default function Home() {
                     </label>
                     <select
                       type="text"
-                      id="Kategori Medali"
-                      name="Kategori Medali"
+                      id="Kategori_Medali"
+                      name="Kategori_Medali"
                       className="form-control"
                       placeholder="Pilih Kategori Medali"
                       required
@@ -445,8 +445,8 @@ export default function Home() {
                     <label className="form-label">INVOICE ID</label>
                     <input
                       type="text"
-                      id="Invoice ID"
-                      name="Invoice ID"
+                      id="Invoice_ID"
+                      name="Invoice_ID"
                       className="form-control"
                       placeholder="ID PEMBAYARAN"
                       value={uniqueId}
@@ -456,7 +456,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="buttonindo">
-                <input type="button" value="KIRIM" onClick={handlePayment} />
+                <input type="submit" value="submit" onClick={handlePayment} />
               </div>
             </form>
           </div>
