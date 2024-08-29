@@ -56,7 +56,7 @@ export default function Home() {
       itemDetails: [
         {
           id: uniqueId,
-          name: selectedCategory,
+          name: `${selectedCategory} - ${selectKategoriMedali}`,
           price: formattedPrice.toString(),
           quantity: "1",
         },
@@ -161,9 +161,10 @@ export default function Home() {
 
     if (token) {
       window.snap.pay(token, {
-        onSuccess: function (result) {
-          console.log("Pembayaran sukses:", result);
-          // Tindakan setelah pembayaran sukses
+        onSuccess: async function (result) {
+          const status = result.transaction_status;
+          await updateSpreadsheetWithStatus(newUniqueId, status);
+          console.log("Pembayaran berhasil:", result);
         },
         onPending: function (result) {
           console.log("Pembayaran tertunda:", result);
@@ -180,6 +181,8 @@ export default function Home() {
       });
     }
   };
+
+  
 
   useEffect(() => {
     if (selectedCategory === "1 Medali") {
@@ -221,11 +224,10 @@ export default function Home() {
 
         try {
           await fetch(scriptURL, { method: "POST", body: formData });
-          window.location.href = "/"; // Gantikan dengan URL halaman sukses Anda
+          // window.location.href = "/";
         } catch (error) {
           console.error("Error saat mengirim data:", error);
         }
-
         form.reset();
       };
 
@@ -237,6 +239,30 @@ export default function Home() {
       };
     }
   }, []);
+
+  const updateSpreadsheetWithStatus = async (orderId, status) => {
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx7TliOuPWp-bWyDNVkFAyXdD3InGJwKY9nZOjP1IVpubr9oDrUUQpSgqbNOrxH3MGZqQ/exec";
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify({
+          orderId,
+          status,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update spreadsheet");
+      }
+    } catch (error) {
+      console.error("Error saat mengupdate spreadsheet:", error);
+    }
+  };
+  
 
   return (
     <>
